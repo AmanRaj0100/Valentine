@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Be My Valentine 💖</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: radial-gradient(circle at top, #ff9a9e, #fad0c4);
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .popup {
+      background: rgba(255,255,255,0.96);
+      width: 460px;
+      height: 320px;
+      border-radius: 26px;
+      padding: 32px;
+      text-align: center;
+      position: relative;
+      box-shadow: 0 20px 50px rgba(255,77,109,0.35);
+      overflow: hidden;
+      animation: pop 0.5s ease;
+    }
+
+    @keyframes pop {
+      from { transform: scale(0.9); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 26px;
+      color: #ff4d6d;
+    }
+
+    .subtitle {
+      font-size: 14px;
+      color: #777;
+      margin: 10px 0 18px;
+    }
+
+    .button-area {
+      position: relative;
+      width: 100%;
+      height: 170px;
+    }
+
+    button {
+      position: absolute;
+      padding: 12px 28px;
+      font-size: 15px;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      font-family: 'Poppins', sans-serif;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    #yes {
+      background: linear-gradient(135deg, #ff4d6d, #ff758c);
+      color: white;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%) scale(1);
+      box-shadow: 0 10px 25px rgba(255,77,109,0.45);
+    }
+
+    #no {
+      background: #f1f1f1;
+      color: #555;
+      top: 10px;
+      left: 20px;
+      box-shadow: 0 6px 14px rgba(0,0,0,0.15);
+    }
+
+    .tease {
+      position: absolute;
+      bottom: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 14px;
+      font-weight: 600;
+      color: #ff4d6d;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+    }
+
+    /* ===== PENGUIN ANIMATION ===== */
+
+    .yay-container {
+      text-align: center;
+      color: white;
+      animation: pop 0.5s ease;
+    }
+
+    .scene {
+      position: relative;
+      width: 300px;
+      height: 220px;
+      margin: 30px auto 20px;
+    }
+
+    .penguin {
+      position: absolute;
+      bottom: 0;
+      width: 90px;
+      height: 120px;
+      background: #2f2f2f;
+      border-radius: 45px 45px 35px 35px;
+    }
+
+    .penguin::before {
+      content: "";
+      position: absolute;
+      bottom: 10px;
+      left: 15px;
+      width: 60px;
+      height: 80px;
+      background: white;
+      border-radius: 30px;
+    }
+
+    .eye {
+      position: absolute;
+      top: 35px;
+      width: 8px;
+      height: 8px;
+      background: black;
+      border-radius: 50%;
+    }
+
+    .eye.left { left: 28px; }
+    .eye.right { right: 28px; }
+
+    .arm {
+      position: absolute;
+      width: 40px;
+      height: 12px;
+      background: #2f2f2f;
+      top: 60px;
+      border-radius: 10px;
+    }
+
+    .left {
+      left: 40px;
+      animation: moveLeft 2s ease-in-out infinite alternate;
+    }
+
+    .left .arm {
+      right: -20px;
+      transform: rotate(20deg);
+    }
+
+    .right {
+      right: 40px;
+      animation: moveRight 2s ease-in-out infinite alternate;
+    }
+
+    .right .arm {
+      left: -20px;
+      transform: rotate(-20deg);
+    }
+
+    @keyframes moveLeft {
+      to { transform: translateX(25px); }
+    }
+
+    @keyframes moveRight {
+      to { transform: translateX(-25px); }
+    }
+
+    .heart {
+      position: absolute;
+      bottom: 140px;
+      left: 50%;
+      width: 18px;
+      height: 18px;
+      background: #ff4d6d;
+      transform: rotate(45deg);
+      animation: float 2s ease-out infinite;
+      opacity: 0;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: "";
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      background: #ff4d6d;
+      border-radius: 50%;
+    }
+
+    .heart::before { top: -9px; left: 0; }
+    .heart::after { left: -9px; top: 0; }
+
+    .heart:nth-child(3) { animation-delay: 0s; }
+    .heart:nth-child(4) { animation-delay: 0.6s; }
+    .heart:nth-child(5) { animation-delay: 1.2s; }
+
+    @keyframes float {
+      0% { transform: translateX(-50%) translateY(0) rotate(45deg) scale(0.5); opacity: 0; }
+      30% { opacity: 1; }
+      100% { transform: translateX(-50%) translateY(-80px) rotate(45deg) scale(1.1); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="popup">
+    <h1>Will you be my Valentine? 💘</h1>
+    <div class="subtitle">Careful… the NO button is shy 😌</div>
+
+    <div class="button-area" id="area">
+      <button id="no">No 🙃</button>
+      <button id="yes">Yes 💕</button>
+    </div>
+
+    <div class="tease" id="tease">Nice try 😏</div>
+  </div>
+
+  <script>
+    const noBtn = document.getElementById("no");
+    const yesBtn = document.getElementById("yes");
+    const area = document.getElementById("area");
+    const tease = document.getElementById("tease");
+
+    const teaseTexts = ["Nice try 😏", "Almost 😜", "Not today 😌"];
+    let teaseIndex = 0;
+    let yesScale = 1;
+
+    function moveNoButton(e) {
+      if (e) e.preventDefault();
+
+      const areaRect = area.getBoundingClientRect();
+      const btnRect = noBtn.getBoundingClientRect();
+
+      const maxX = areaRect.width - btnRect.width - 20;
+      const maxY = (areaRect.height / 2) - btnRect.height - 10;
+
+      noBtn.style.left = `${Math.random() * maxX}px`;
+      noBtn.style.top = `${Math.max(5, Math.random() * maxY)}px`;
+
+      tease.textContent = teaseTexts[teaseIndex++ % teaseTexts.length];
+      tease.style.opacity = 1;
+      setTimeout(() => tease.style.opacity = 0, 900);
+
+      yesScale += 0.04;
+      yesBtn.style.transform = `translateX(-50%) scale(${yesScale})`;
+    }
+
+    noBtn.addEventListener("mouseenter", moveNoButton);
+    noBtn.addEventListener("touchstart", moveNoButton);
+    noBtn.addEventListener("click", moveNoButton);
+
+    yesBtn.addEventListener("click", () => {
+      document.body.innerHTML = `
+        <div class="yay-container">
+          <h1>Yayyy!! 💖</h1>
+          <div class="scene">
+            <div class="penguin left">
+              <div class="eye left"></div>
+              <div class="eye right"></div>
+              <div class="arm"></div>
+            </div>
+            <div class="penguin right">
+              <div class="eye left"></div>
+              <div class="eye right"></div>
+              <div class="arm"></div>
+            </div>
+            <div class="heart"></div>
+            <div class="heart"></div>
+            <div class="heart"></div>
+          </div>
+          <h2>You’re officially my Valentine 😍</h2>
+          <h2>My Pidu 🐧</h2>
+        </div>
+      `;
+    });
+  </script>
+
+</body>
+</html>
